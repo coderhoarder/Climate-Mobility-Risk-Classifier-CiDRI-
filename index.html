@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiDRI Methodology Framework - Professional Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Aptos', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e8e8e8;
+            color: #333;
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, #3F4F43 0%, #5A6A6A 50%, #779FA6 100%);
+            padding: 50px 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+        }
+        
+        .main-title {
+            font-size: 3.2em;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 1.5em;
+            color: #C5A572;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.1em;
+            color: #A1B5A8;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .intro-banner {
+            background: #3F4F43;
+            color: white;
+            padding: 30px 40px;
+            border-bottom: 4px solid #C5A572;
+        }
+        
+        .intro-banner h2 {
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            color: #C5A572;
+        }
+        
+        .intro-banner p {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #e8e8e8;
+        }
+        
+        .methodology-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .phase-group {
+            border-bottom: 3px solid #ddd;
+        }
+        
+        .phase-header-row {
+            background: linear-gradient(to right, #2a3a2e, #3F4F43);
+        }
+        
+        .phase-header-row td {
+            padding: 0;
+            border: none;
+        }
+        
+        .phase-indicator {
+            width: 120px;
+            padding: 25px 20px;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1em;
+            border-right: 3px solid white;
+        }
+        
+        .phase-title-cell {
+            padding: 25px 30px;
+            color: white;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-row {
+            background: white;
+        }
+        
+        .content-row td {
+            padding: 30px;
+            vertical-align: top;
+            border-right: 1px solid #e0e0e0;
+        }
+        
+        .content-row td:last-child {
+            border-right: none;
+        }
+        
+        .section-header {
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .steps-column {
+            width: 35%;
+            background: #fafafa;
+        }
+        
+        .insights-column {
+            width: 35%;
+            background: white;
+        }
+        
+        .impact-column {
+            width: 30%;
+            background: #f5f5f5;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .step-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #779FA6;
+            transform: rotate(45deg);
+        }
+        
+        .insight-box {
+            background: white;
+            border-left: 4px solid;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .insight-number {
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .insight-content {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .impact-box {
+            background: linear-gradient(135deg, #3F4F43 0%, #5A6A6A 100%);
+            color: white;
+            padding: 20px;
+            border-left: 5px solid #C5A572;
+            line-height: 1.7;
+        }
+        
+        .impact-label {
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #C5A572;
+            margin-bottom: 10px;
+        }
+        
+        .flow-connector {
+            background: linear-gradient(to bottom, white, #f5f5f5, white);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-connector td {
+            border: none !important;
+            padding: 20px !important;
+        }
+        
+        .flow-line {
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(to bottom, #779FA6, #C5A572);
+            margin: 0 auto 10px;
+        }
+        
+        .flow-arrow {
+            font-size: 2em;
+            color: #779FA6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .flow-description {
+            font-size: 0.95em;
+            color: #555;
+            font-weight: 600;
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        .synthesis-row {
+            background: linear-gradient(135deg, #3F4F43 0%, #5A6A6A 50%, #779FA6 100%);
+        }
+        
+        .synthesis-row td {
+            padding: 40px !important;
+            color: white;
+            border: none !important;
+        }
+        
+        .synthesis-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: #C5A572;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 25px;
+        }
+        
+        .synthesis-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-left: 4px solid #C5A572;
+        }
+        
+        .synthesis-card h3 {
+            font-size: 1.3em;
+            color: #C5A572;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .synthesis-card p {
+            line-height: 1.7;
+            color: #e8e8e8;
+        }
+        
+        .conclusion-text {
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-top: 25px;
+            color: #A1B5A8;
+            font-style: italic;
+        }
+        
+        /* Phase-specific colors */
+        .phase-1-2 { background: #7B5B4D; }
+        .phase-3 { background: #5A6A6A; }
+        .phase-4-5 { background: #779FA6; }
+        .phase-6-7 { background: #A1B5A8; }
+        .phase-8 { background: #C5A572; color: #333; }
+        
+        .border-1-2 { border-left-color: #7B5B4D; }
+        .border-3 { border-left-color: #5A6A6A; }
+        .border-4-5 { border-left-color: #779FA6; }
+        .border-6-7 { border-left-color: #A1B5A8; }
+        .border-8 { border-left-color: #C5A572; }
+        
+        .text-1-2 { color: #7B5B4D; }
+        .text-3 { color: #5A6A6A; }
+        .text-4-5 { color: #779FA6; }
+        .text-6-7 { color: #A1B5A8; }
+        .text-8 { color: #C5A572; }
+        
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="header-content">
+            <div class="main-title">A Methodology for Methodologies</div>
+            <div class="subtitle">Climate-induced Displacement Risk Identification (CiDRI) Framework</div>
+            <div class="tagline">An Interconnected Journey: Field Insights → Theoretical Analysis → Practical Tools → Policy Action</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="intro-banner">
+            <h2>Understanding the Interconnected Methodology</h2>
+            <p>This framework demonstrates how each phase organically flows into the next through an iterative, insight-driven process. The table below traces the complete journey where methodological steps generate insights, insights impact the approach, and that impact informs the next phase's methodology. Follow the logical progression to see how 11 key insights across 8 interconnected phases built the comprehensive CiDRI framework.</p>
+        </div>
+        
+        <table class="methodology-table">
+            <!-- PHASE 1 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-1-2">PHASE 1</td>
+                                <td class="phase-title-cell">Strategic Site Selection & Initial Field Engagement</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Started with locations experiencing climate stress, deliberately avoiding headline migration areas to prevent bias toward alarmist perspectives</div>
+                        <div class="step-item">Conducted reconnaissance visits to climate-affected sites to understand ground realities</div>
+                        <div class="step-item">Studied current broader agreements on displacement, migration and past climate distresses</div>
+                        <div class="step-item">Engaged with local governments to understand their perspectives, immediate actions and future preventive measures</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Key Insights Generated</div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 1</div>
+                            <div class="insight-content">Governments often have an alarmist perspective when it comes to climate migration. They look at it as a linear process of trigger → loss → migration. Migration storms are seldom the norm, but policies around movement are specifically designed only around migration.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 2</div>
+                            <div class="insight-content">Policies around climate-displacement are generally built for events; hence mobilities are absent from conscious policy making.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>These insights revealed the gap between event-based policy frameworks and the continuous nature of climate-induced mobility. This understanding shaped the decision to shift focus from discrete migration events to ongoing mobility states.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">Understanding the event-based policy gap led to community engagement to understand mobility as a continuous state of living</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 2 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-1-2">PHASE 2</td>
+                                <td class="phase-title-cell">Community-Centered Investigation</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Engaged directly with communities to understand their coping mechanisms and lived experiences</div>
+                        <div class="step-item">Identified and documented various types of mobilities emerging from community responses</div>
+                        <div class="step-item">Classified the types of mobilities observed across South Asia</div>
+                        <div class="step-item">Segregated and narrowed down study areas based on mobility patterns</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Key Insights Generated</div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 3</div>
+                            <div class="insight-content">Migration is an event, but mobility is a state of living. Mobility could lead to migration or morph into forms like mal adaptation, anticipatory shifting, or relocation and more.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 4</div>
+                            <div class="insight-content">All habitations can be examined for mobility; one should not have pre-defined perceptions on mobility. Any climate stressed settlement can be investigated for mobility patterns and risks at either settlement level or household level.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 5</div>
+                            <div class="insight-content">A single region may be experiencing multiple types of mobilities, even multiple types of climate-mobilities depending upon their current ecosystem.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 6</div>
+                            <div class="insight-content">Immobility could be result of absence of adaptive mobility options. Classic examples are people not directly hit by disasters. In an alarmist and reactive policy scenario, this is worse because policy counts them as 'survivors/non-victims' of a trigger event.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 7</div>
+                            <div class="insight-content">There are significant factors and steps between the decision to migrate and finally migrating. This can include negotiation, partial migration, anxiety.</div>
+                        </div>
+                        <div class="insight-box border-1-2">
+                            <div class="insight-number text-1-2">Insight 8</div>
+                            <div class="insight-content">Current resilience and risk capturing tools are lengthy and difficult to deploy in order to derive field insights on mobility especially at household level.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>The recognition that mobility exists as a continuum rather than a binary state fundamentally changed the research approach. Examining only completed migrations would miss the vast majority of at-risk populations. This necessitated developing a framework to capture various states of mobility and immobility.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">The mobility continuum discovery prompted examination of existing migration theories to identify gaps between theory and observed ground realities</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 3 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-3">PHASE 3</td>
+                                <td class="phase-title-cell">Theoretical Analysis & Gap Identification</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Studied existing theories of migration to understand established frameworks</div>
+                        <div class="step-item">Analysed gaps between theory and observed ground realities</div>
+                        <div class="step-item">Identified areas where our research could make unique contributions</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Key Insights Generated</div>
+                        <div class="insight-box border-3">
+                            <div class="insight-number text-3">Insight 9</div>
+                            <div class="insight-content">Mobility stress (especially forced mobility) can manifest into risks beyond the purview of public policy making, delving into conversations around gender security and mental health.</div>
+                        </div>
+                        <div class="insight-box border-3">
+                            <div class="insight-number text-3">Insight 10</div>
+                            <div class="insight-content">A house or settlement or even resilience frameworks are not solely enough for capturing mobility trends in a settlement. Policy and governance overlook mobility as there are currently no rapid assessment or evidence capturing frameworks in practice that can predict risks.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>Existing theoretical frameworks were insufficient to capture the multi-dimensional risks faced by climate-mobile populations. The need for a tool that could identify risks beyond traditional economic or physical displacement measures became clear. This led to conceptualizing housing ecosystem as a visual entry point for understanding comprehensive community vulnerability.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">Recognition of theoretical gaps led to conceptualizing housing ecosystem as the framework foundation for comprehensive risk assessment</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 4 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-4-5">PHASE 4</td>
+                                <td class="phase-title-cell">Conceptual Framework Development</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Developed the theoretical basis for using housing ecosystem as a framework</div>
+                        <div class="step-item">Conceptualized the relationship between housing, risk identification, and mobility tendencies</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Key Insights Generated</div>
+                        <div class="insight-box border-4-5">
+                            <div class="insight-number text-4-5">Insight 11</div>
+                            <div class="insight-content">Our research focuses on understanding how housing ecosystem can be used as a framework to identify risks to a community from climate change and also its corresponding mobility tendencies. Mobility tendencies shape development. Mobility tendencies are proxies for demands which ultimately shape change.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>Housing represents the intersection of environmental exposure, economic capacity, social networks, and adaptive strategies. This conceptual framework provided the foundation for developing the CiDRI matrix as a practical tool that could be applied in the field.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">The conceptual framework moved from theory to practical application through tool development and iterative field testing</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 5 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-4-5">PHASE 5</td>
+                                <td class="phase-title-cell">Tool Development & Testing</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Drafted the initial CiDRI (Climate-induced Displacement Risk Identification) matrix</div>
+                        <div class="step-item">Developed supporting questionnaires for data collection</div>
+                        <div class="step-item">Conducted rapid testing of the tool in field settings</div>
+                        <div class="step-item">Analysed which areas the questions were addressing</div>
+                        <div class="step-item">Identified critical indicators emerging from initial testing</div>
+                        <div class="step-item">Refined and finalized the tool based on testing results</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Validation Insights</div>
+                        <div class="insight-box border-4-5">
+                            <div class="insight-number text-4-5">Validation Process</div>
+                            <div class="insight-content">The iterative testing process was crucial in transforming the theoretical framework into a practical diagnostic tool. Field testing revealed which indicators were most relevant for identifying both climate risks and mobility patterns.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>This process validated the housing-centered approach and refined understanding of how different risk factors interact to influence mobility decisions. The tool was now ready for comprehensive community application to generate real-world data.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">The validated tool was applied systematically to capture community voices and develop detailed case studies</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 6 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-6-7">PHASE 6</td>
+                                <td class="phase-title-cell">Community Voice Capture & Case Study Development</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Used the CDRI tool to systematically capture sample community voices</div>
+                        <div class="step-item">Developed detailed case studies from field data</div>
+                        <div class="step-item">Generated key insights from community narratives and quantitative data</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Data Generated</div>
+                        <div class="insight-box border-6-7">
+                            <div class="insight-number text-6-7">Rich Qualitative & Quantitative Data</div>
+                            <div class="insight-content">The application of the CiDRI tool in diverse community contexts generated rich qualitative and quantitative data. Community voices provided nuanced understanding of how climate stress, housing conditions, and mobility decisions intersect in daily lived experience.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>These insights validated theoretical assumptions while also revealing new dimensions of risk that required further tool refinement. The real-world application identified specific gaps that needed to be addressed in the framework.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">Community insights were analyzed to identify tool gaps and accommodate necessary changes for a comprehensive risk assessment framework</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 7 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-6-7">PHASE 7</td>
+                                <td class="phase-title-cell">Risk Assessment Framework Improvements (Ongoing)</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Analysed key insights from community engagement to identify gaps in the tool</div>
+                        <div class="step-item">Accommodated changes in the CiDRI tool based on field learnings</div>
+                        <div class="step-item">Created a comprehensive risk assessment framework</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Framework Integration</div>
+                        <div class="insight-box border-6-7">
+                            <div class="insight-number text-6-7">Comprehensive Integration</div>
+                            <div class="insight-content">The iterative refinement process led to a robust risk assessment framework that systematically identifies multiple dimensions of climate-induced displacement risk. Housing vulnerability indicators were integrated with mobility tendency markers, creating a comprehensive diagnostic tool applicable across different climate stress contexts.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>The refined framework now provided a robust tool for identifying multi-dimensional risks across different contexts. It was ready to inform practical policy interventions addressing both immediate and long-term challenges.</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="flow-connector">
+                    <td colspan="3">
+                        <div class="flow-line"></div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-description">The comprehensive diagnostic framework connected to actionable policy interventions, completing the journey from field to policy</div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- PHASE 8 -->
+            <tbody class="phase-group">
+                <tr class="phase-header-row">
+                    <td colspan="3">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td class="phase-indicator phase-8">PHASE 8</td>
+                                <td class="phase-title-cell" style="color: #333;">Policy Intervention Pathway Development (Ongoing)</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="content-row">
+                    <td class="steps-column">
+                        <div class="section-header">Methodological Steps</div>
+                        <div class="step-item">Analysed community needs identified through the risk assessment framework</div>
+                        <div class="step-item">Developed intervention pathways based on identified needs and risks</div>
+                        <div class="step-item">Suggested pilot interventions at selected sites and learn from the pilot results</div>
+                        <div class="step-item">Created policy recommendations that address mobility as a continuous state rather than discrete events</div>
+                    </td>
+                    <td class="insights-column">
+                        <div class="section-header">Policy Translation</div>
+                        <div class="insight-box border-8">
+                            <div class="insight-number text-8">From Diagnosis to Action</div>
+                            <div class="insight-content">By understanding the needs revealed through the CDRI matrix, targeted interventions can be proposed that address both immediate climate risks and long-term mobility pressures. This completes the methodological arc from field observation to policy action.</div>
+                        </div>
+                    </td>
+                    <td class="impact-column">
+                        <div class="impact-box">
+                            <div class="impact-label">Impact on Methodology</div>
+                            <div>The final phase connects the diagnostic framework to actionable policy interventions. The framework now informs practical policies that address mobility as a continuous state rather than discrete events, fundamentally changing how climate-induced displacement is addressed.</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            
+            <!-- SYNTHESIS -->
+            <tbody>
+                <tr class="synthesis-row">
+                    <td colspan="3">
+                        <div class="synthesis-title">The Complete Interconnected Journey: An Emergent, Insight-Driven Methodology</div>
+                        
+                        <div class="synthesis-grid">
+                            <div class="synthesis-card">
+                                <h3>EMERGENT</h3>
+                                <p>Each phase organically built upon learnings from the previous one, creating an emergent methodology that remained responsive to ground realities while developing theoretical and practical contributions.</p>
+                            </div>
+                            <div class="synthesis-card">
+                                <h3>INSIGHT-DRIVEN</h3>
+                                <p>11 key insights progressively shaped the research approach. Field-based observations at each stage led to methodological refinement and new directions, ensuring the framework remained grounded in reality.</p>
+                            </div>
+                            <div class="synthesis-card">
+                                <h3>GROUNDED</h3>
+                                <p>The approach remained responsive to community experience throughout, from initial field engagement through to policy development, ensuring the framework addresses real-world mobility challenges.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="conclusion-text">
+                            The CiDRI matrix emerged as the culmination of iterative learning: from recognizing limitations of event-based policy frameworks → through understanding mobility as a continuum → to identifying housing ecosystem as critical entry point → for comprehensive risk assessment and actionable policy interventions
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
